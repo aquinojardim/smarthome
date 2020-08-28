@@ -2,9 +2,12 @@
   "name": "smarthome",
   "version": "1.0.0",
   "description": "Application for home automation that turns lights on and off and controlles temperature",
-  "main": "index.js",
+  "main": "src/server/server.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "jest",
+    "start": "cross-env NODE_ENV=production node src/server/server.js",
+    "build": "webpack",
+    "dev": "cross-env NODE_ENV=development concurrently \"nodemon src/server/server.js\" \"webpack-dev-server --open --hot\""
   },
   "repository": {
     "type": "git",
@@ -15,5 +18,37 @@
   "bugs": {
     "url": "https://github.com/aquinojardim/smarthome/issues"
   },
-  "homepage": "https://github.com/aquinojardim/smarthome#readme"
+  "homepage": "https://github.com/aquinojardim/smarthome#readme",
+  "devDependencies": {
+    "@babel/core": "^7.10.2",
+    "@babel/preset-env": "^7.10.2",
+    "@babel/preset-react": "^7.10.1",
+    "babel-loader": "^8.1.0",
+    "concurrently": "^5.2.0",
+    "cross-env": "^7.0.2",
+    "css-loader": "^3.5.3",
+    "html-webpack-plugin": "^4.3.0",
+    "jest": "^26.4.0",
+    "nodemon": "^2.0.4",
+    "style-loader": "^1.2.1",
+    "webpack": "^4.43.0",
+    "webpack-cli": "^3.3.11",
+    "webpack-dev-server": "^3.11.0"
+  },
+  "dependencies": {
+    "@material-ui/core": "^4.10.1",
+    "@material-ui/icons": "^4.9.1",
+    "dotenv": "^8.2.0",
+    "express": "^4.17.1",
+    "express-session": "^1.13.0",
+    "react": "^16.13.1",
+    "react-dom": "^16.13.1",
+    "react-hot-loader": "^4.6.3",
+    "react-redux": "^7.2.0",
+    "react-router": "^4.3.1",
+    "react-router-dom": "^4.3.1",
+    "redux": "^4.0.5",
+    "redux-devtools-extension": "^2.13.8",
+    "redux-thunk": "^2.3.0"
+  }
 }
