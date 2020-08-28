@@ -1,0 +1,19 @@
+{
+  "name": "smarthome",
+  "version": "1.0.0",
+  "description": "Application for home automation that turns lights on and off and controlles temperature",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/aquinojardim/smarthome.git"
+  },
+  "author": "Gabriela Aquino",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/aquinojardim/smarthome/issues"
+  },
+  "homepage": "https://github.com/aquinojardim/smarthome#readme"
+}
