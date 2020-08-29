@@ -4,7 +4,6 @@ const lightController = {};
 
 // retrive all content of database, them respond with an object containg the order of insertion on the database as keys and the status as values
 lightController.getLight = (req, res, next) => {
-  console.log('here')
   const { results } = JSON.parse(fs.readFileSync(path.resolve(__dirname, '../database/lights.json'), 'UTF-8'));
   if (!results) {
     return next({

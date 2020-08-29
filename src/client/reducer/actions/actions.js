@@ -4,6 +4,12 @@ export const getState = () => ({
     type: types.GET_STATE,
 })
 
+export const allLights = (boolen) => ({
+  type: types.ALL_LIGHTS,
+  payload: boolen,
+})
+
+
 export const updateLight = (obj) => ({
   type: types.UPDATE_LIGHT,
   payload: obj,

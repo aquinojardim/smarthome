@@ -2,16 +2,11 @@ import React from 'react';
 import { useSelector } from 'react-redux';
 
 export default function Thermostat (props) {
-  const { temperature, targetTemperature } = useSelector((state) => state);
+  const { temperature, targetTemperature, eco } = useSelector((state) => state);
+
 
   const getStyles = () => {
-    // Determine if the thermostat is actively working to reach the target temperature.
     let dialColor = '#222';
-    if (props.hvacMode === 'heating') {
-      dialColor = '#E36304';
-    } else if (props.hvacMode === 'cooling') {
-      dialColor = '#007AF1';
-    }
 
     return {
       dial: {
@@ -32,7 +27,7 @@ export default function Thermostat (props) {
         alignmentBaseline: 'central',
         fontSize: '120px',
         fontWeight: 'bold',
-        visibility: (props.away ? 'hidden' : 'visible'),
+        visibility: 'visible',
       },
       ambient: {
         fill: 'white',
@@ -42,20 +37,10 @@ export default function Thermostat (props) {
         fontSize: '22px',
         fontWeight: 'bold',
       },
-      away: {
-        fill: 'white',
-        textAnchor: 'middle',
-        fontFamily: 'Helvetica, sans-serif',
-        alignmentBaseline: 'central',
-        fontSize: '72px',
-        fontWeight: 'bold',
-        opacity: (props.away ? '1' : '0'),
-        pointerEvents: 'none',
-      },
-      leaf: {
+      eco: {
         fill: '#13EB13',
-        opacity: (props.leaf ? '1' : '0'),
-        visibility: (props.away ? 'hidden' : 'visible'),
+        opacity: (eco ? '1' : '0'),
+        visibility: 'visible',
         WebkitTransition: 'opacity 0.5s',
         transition: 'opacity 0.5s',
         pointerEvents: 'none',
@@ -90,7 +75,7 @@ export default function Thermostat (props) {
     return val;
   }
 
-  const mapLeafPoint = (point, scale) => {
+  const mapEcoPoint = (point, scale) => {
     return isNaN(point) ? point : point * scale;
   }
 
@@ -105,13 +90,8 @@ export default function Thermostat (props) {
   // Determine the maximum and minimum values to display.
   let actualMinValue;
   let actualMaxValue;
-  if (props.away) {
-    actualMinValue = temperature;
-    actualMaxValue = actualMinValue;
-  } else {
     actualMinValue = Math.min(temperature, targetTemperature);
     actualMaxValue = Math.max(temperature, targetTemperature);
-  }
   const min = restrictToRange(Math.round((actualMinValue - props.minValue)
       / rangeValue * props.numTicks), 0, props.numTicks - 1);
     const max = restrictToRange(Math.round((actualMaxValue - props.minValue)
@@ -150,16 +130,16 @@ export default function Thermostat (props) {
       tickArray.push(tickElement);
     }
 
-    // Determines the positioning of the leaf, should it be displayed.
-    const leafScale = radius / 5 / 100;
-    const leafDef = ['M', 3, 84, 'c', 24, 17, 51, 18, 73, -6, 'C', 100, 52, 100,
+    // Determines the positioning of the eco, should it be displayed.
+    const ecoScale = radius / 5 / 100;
+    const ecoDef = ['M', 3, 84, 'c', 24, 17, 51, 18, 73, -6, 'C', 100, 52, 100,
       22, 100, 4, 'c', -13, 15, -37, 9, -70, 19, 'C', 4, 32, 0, 63, 0, 76, 'c',
       6, -7, 18, -17, 33, -23, 24, -9, 34, -9, 48, -20, -9, 10, -20, 16, -43, 24,
       'C', 22, 63, 8, 78, 3, 84, 'z',
     ].map(
-      (point) => mapLeafPoint(point, leafScale)
+      (point) => mapEcoPoint(point, ecoScale)
     ).join(' ');
-    const translate = [radius - (leafScale * 100 * 0.5), radius * 1.5];
+    const translate = [radius - (ecoScale * 100 * 0.5), radius * 1.5];
 
     // Determines whether the ambient temperature label will be displayed
     // to the left or right of the tick range.
@@ -195,8 +175,7 @@ export default function Thermostat (props) {
         <text x={ambientPosition[0]} y={ambientPosition[1]} style={styles.ambient}>
           {Math.round(temperature)}
         </text>
-        <text x={radius} y={radius} style={styles.away}>AWAY</text>
-        <path d={leafDef} style={styles.leaf}
+        <path d={ecoDef} style={styles.eco}
           transform={['translate(', translate[0], ',', translate[1], ')'].join('')}
         ></path>
       </svg>

@@ -13,7 +13,7 @@ temperatureController.getInfo = (req, res, next) => {
   }
 
   // solution to be able to be reused by the apiRouter 
-  res.locals.data.air = results.air;
+  res.locals.data.eco = results.eco;
   res.locals.data.temperature = results.temperature;
   
   return next();
@@ -26,7 +26,7 @@ temperatureController.postInfo = (req, res, next) => {
   // scrub object before store on database
 
   // change database
-  if(obj.air) res.locals.data.air = obj.air
+  if(obj.eco) res.locals.data.eco = obj.eco
   if(obj.temperature) res.locals.data.temperature = obj.temperature 
 
   try {

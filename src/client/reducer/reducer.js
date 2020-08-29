@@ -9,16 +9,16 @@ const initialState = {
   lights: {},
   temperature: 0,
   targetTemperature: 0,
-  air: false,
+  eco: false,
 };
 
 const reducer = (state = initialState, action) => {
   // copy all state properties do avoid state mutability
   let lightCountCopy = state.lightCount;
-  let lightsCopy = {...state.light};
+  let lightsCopy = {...state.lights};
   let temperatureCopy = state.temperature;
   let targetTemperatureCopy = state.targetTemperature;
-  let airCopy = state.air;
+  let ecoCopy = state.eco;
 
 
   switch (action.type) {
@@ -34,7 +34,7 @@ const reducer = (state = initialState, action) => {
             "status": true
           }
         },
-        "air": true,
+        "eco": true,
         "temperature": 60 
       }
 
@@ -42,7 +42,7 @@ const reducer = (state = initialState, action) => {
       lightsCopy = data.lights;
       temperatureCopy = data.temperature;
       targetTemperatureCopy = data.temperature;
-      airCopy = data.air;
+      ecoCopy = data.eco;
 
       return {
         ...state,
@@ -50,7 +50,33 @@ const reducer = (state = initialState, action) => {
         lights: lightsCopy,
         targetTemperature: targetTemperatureCopy,
         temperature: temperatureCopy,
-        air: airCopy,
+        eco: ecoCopy,
+      };
+
+    case types.ALL_LIGHTS:
+
+      for (let light in lightsCopy){
+        lightsCopy[light]['status'] = action.payload
+      }
+
+      // const lightPosted = postRequest("/light/all", lightCopy);
+  
+      return {
+        ...state,
+        lights: lightsCopy,
+      };
+
+    case types.DELETE_LIGHT:
+      // const lightDelete = { id: action.payload}
+      // const lightDeleted = deleteRequest("/light/", lightDelete);
+  
+      delete lightsCopy[action.payload]
+      lightCountCopy = Object.keys(lightsCopy).length
+    
+      return {
+        ...state,
+        lightCount: lightCountCopy,
+        lights: lightsCopy,
       };
 
     case types.UPDATE_LIGHT:
@@ -58,8 +84,8 @@ const reducer = (state = initialState, action) => {
                       id: action.payload.id,
                       value: action.payload.value
                     }}
-      const lightPosted = postRequest("/light/", lightData);
 
+      // const lightPosted = postRequest("/light/", lightData);
       lightsCopy[action.payload.id] = action.payload.value
       lightCountCopy = Object.keys(lightsCopy).length
   
@@ -71,7 +97,7 @@ const reducer = (state = initialState, action) => {
 
     case types.DELETE_LIGHT:
       const lightDelete = { id: action.payload}
-      const lightDeleted = deleteRequest("/light/", lightDelete);
+      // const lightDeleted = deleteRequest("/light/", lightDelete);
   
       delete lightsCopy[action.payload]
       lightCountCopy = Object.keys(lightsCopy).length
@@ -84,7 +110,6 @@ const reducer = (state = initialState, action) => {
 
     case types.UPDATE_TARGET:             
       targetTemperatureCopy = action.payload;
-      console.log(targetTemperatureCopy)
 
       return {
         ...state,
@@ -94,12 +119,12 @@ const reducer = (state = initialState, action) => {
     case types.UPDATE_TEMPERATURE:
       // not connect to backend
       // const temperatureData = {obj: {
-      //                           air: action.payload.air,
+      //                           eco: action.payload.eco,
       //                           temperature: action.payload.temperature
       //                         }}
       // const temperaturePosted = postRequest("/temperature/", temperatureData);
-                console.log(action.payload)               
-      airCopy = action.payload.air
+       
+      ecoCopy = action.payload.eco
       if(action.payload.temperature){
         temperatureCopy = action.payload.temperature
       }
@@ -107,7 +132,7 @@ const reducer = (state = initialState, action) => {
       return {
         ...state,
         temperature: temperatureCopy,
-        air: airCopy,
+        eco: ecoCopy,
       };
 
     case types.RESET:

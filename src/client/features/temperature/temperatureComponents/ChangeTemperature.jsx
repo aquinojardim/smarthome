@@ -7,8 +7,14 @@ import Slider from '@material-ui/core/Slider';
 
 const useStyles = makeStyles((theme) => ({
   root: {
-    margin: '15%',
-    width: '70%',
+    marginLeft: 'auto',
+    marginRight: 'auto',
+    [theme.breakpoints.down('sm')]: {
+      width: '70%',
+    },
+    [theme.breakpoints.up('md')]: {
+      width: '30%',
+    },
   },
 }));
 
@@ -39,6 +45,7 @@ export default function ChangeTemperature(props) {
   return (
     <div className={classes.root}>
       <Slider
+        color="secondary"
         defaultValue={temperature}
         getAriaValueText={valuetext}
         aria-labelledby="discrete-slider-custom"
@@ -50,7 +57,7 @@ export default function ChangeTemperature(props) {
           )}}
         onChangeCommitted={(e)=> {
           dispatch(actions.updateTemperature({
-            air: true, 
+            eco: true, 
             temperature: JSON.parse(e.target.textContent)
           })
         )}}
