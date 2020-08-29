@@ -8,6 +8,7 @@ const initialState = {
   lightCount: 0,
   lights: {},
   temperature: 0,
+  targetTemperature: 0,
   air: false,
 };
 
@@ -16,6 +17,7 @@ const reducer = (state = initialState, action) => {
   let lightCountCopy = state.lightCount;
   let lightsCopy = {...state.light};
   let temperatureCopy = state.temperature;
+  let targetTemperatureCopy = state.targetTemperature;
   let airCopy = state.air;
 
 
@@ -39,12 +41,14 @@ const reducer = (state = initialState, action) => {
       lightCountCopy = Object.keys(data.lights).length
       lightsCopy = data.lights;
       temperatureCopy = data.temperature;
+      targetTemperatureCopy = data.temperature;
       airCopy = data.air;
 
       return {
         ...state,
         lightCount: lightCountCopy,
         lights: lightsCopy,
+        targetTemperature: targetTemperatureCopy,
         temperature: temperatureCopy,
         air: airCopy,
       };
@@ -66,10 +70,10 @@ const reducer = (state = initialState, action) => {
       };
 
     case types.DELETE_LIGHT:
-      const lightDelete = { id: action.payload.id }
+      const lightDelete = { id: action.payload}
       const lightDeleted = deleteRequest("/light/", lightDelete);
   
-      delete lightsCopy[action.payload.id]
+      delete lightsCopy[action.payload]
       lightCountCopy = Object.keys(lightsCopy).length
     
       return {
@@ -78,13 +82,23 @@ const reducer = (state = initialState, action) => {
         lights: lightsCopy,
       };
 
+    case types.UPDATE_TARGET:             
+      targetTemperatureCopy = action.payload;
+      console.log(targetTemperatureCopy)
+
+      return {
+        ...state,
+        targetTemperature: targetTemperatureCopy
+      };
+
     case types.UPDATE_TEMPERATURE:
-      const temperatureData = {obj: {
-                                air: action.payload.air,
-                                temperature: action.payload.temperature
-                              }}
-      const temperaturePosted = postRequest("/temperature/", temperatureData);
-                              
+      // not connect to backend
+      // const temperatureData = {obj: {
+      //                           air: action.payload.air,
+      //                           temperature: action.payload.temperature
+      //                         }}
+      // const temperaturePosted = postRequest("/temperature/", temperatureData);
+                console.log(action.payload)               
       airCopy = action.payload.air
       if(action.payload.temperature){
         temperatureCopy = action.payload.temperature

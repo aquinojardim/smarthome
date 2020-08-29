@@ -32,7 +32,7 @@ const Home = (props) => {
       <h1> WELCOME HOME {today} </h1>
       <Container maxWidth="lg" className={classes.root}>
         <LightPanel/>
-        {/* <TemperaturePanel/> */}
+        <TemperaturePanel/>
       </Container>
     </div>
   );

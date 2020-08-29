@@ -14,6 +14,11 @@ export const deleteLight = (id) => ({
   payload: id,
 })
 
+export const updateTarget = (number) => ({
+  type: types.UPDATE_TARGET,
+  payload: number,
+})
+
 export const updateTemperature = (obj) => ({
   type: types.UPDATE_TEMPERATURE ,
   payload: obj,
