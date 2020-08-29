@@ -5,6 +5,7 @@ import deleteRequest from '../helpers/deleteRequest';
 
 // Set initial state
 const initialState = {
+  lightCount: 0,
   lights: {},
   temperature: 0,
   air: false,
@@ -12,6 +13,7 @@ const initialState = {
 
 const reducer = (state = initialState, action) => {
   // copy all state properties do avoid state mutability
+  let lightCountCopy = state.lightCount;
   let lightsCopy = {...state.light};
   let temperatureCopy = state.temperature;
   let airCopy = state.air;
@@ -21,12 +23,14 @@ const reducer = (state = initialState, action) => {
     // Update state with payload
     case types.GET_STATE:
       const data = getRequest("/api/");
+      lightCountCopy = Object.keys(data.lights).length
       lightsCopy = data.lights;
       temperatureCopy = data.temperature;
       airCopy = data.air;
 
       return {
         ...state,
+        lightCount: lightCountCopy,
         lights: lightsCopy,
         temperature: temperatureCopy,
         air: airCopy,
@@ -40,9 +44,11 @@ const reducer = (state = initialState, action) => {
       const lightPosted = postRequest("/light/", lightData);
 
       lightsCopy[action.payload.id] = action.payload.value
+      lightCountCopy = Object.keys(lightsCopy).length
   
       return {
         ...state,
+        lightCount: lightCountCopy,
         lights: lightsCopy,
       };
 
@@ -51,9 +57,11 @@ const reducer = (state = initialState, action) => {
       const lightDeleted = deleteRequest("/light/", lightDelete);
   
       delete lightsCopy[action.payload.id]
+      lightCountCopy = Object.keys(lightsCopy).length
     
       return {
         ...state,
+        lightCount: lightCountCopy,
         lights: lightsCopy,
       };
 

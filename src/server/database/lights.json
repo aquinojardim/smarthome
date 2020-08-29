@@ -1,3 +1,6 @@
 {
-    "1":true
+    "1":{
+        "name": "Living Room",
+        "status": true
+    }
 }
