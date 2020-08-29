@@ -22,7 +22,20 @@ const reducer = (state = initialState, action) => {
   switch (action.type) {
     // Update state with payload
     case types.GET_STATE:
-      const data = getRequest("/api/");
+      // fix not connecting to backend
+      // const data = getRequest("/api/");
+      // mock data to test frontend
+      const data = {
+        "lights": {
+          "1": {
+            "name": "Living Room",
+            "status": true
+          }
+        },
+        "air": true,
+        "temperature": 60 
+      }
+
       lightCountCopy = Object.keys(data.lights).length
       lightsCopy = data.lights;
       temperatureCopy = data.temperature;

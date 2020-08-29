@@ -2,7 +2,7 @@ import React from 'react';
 import { withStyles } from '@material-ui/core/styles';
 import Switch from '@material-ui/core/Switch';
 
-export default LightSwitch = withStyles((theme) => ({
+ const LightSwitch = withStyles((theme) => ({
   root: {
     width: 28,
     height: 16,
@@ -35,3 +35,5 @@ export default LightSwitch = withStyles((theme) => ({
   },
   checked: {},
 }))(Switch);
+
+export default LightSwitch

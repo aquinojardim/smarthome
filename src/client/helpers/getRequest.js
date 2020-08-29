@@ -1,10 +1,11 @@
-export const getRequest = (api) => {
+export default function getRequest (api){
   fetch(`${api}`, {
     method: "GET",
     headers: {'Content-Type': 'application/json'},
   })
   .then(res => res.json())
   .then(data => {
+    console.log(data)
     return data
   })
   .catch(err => {

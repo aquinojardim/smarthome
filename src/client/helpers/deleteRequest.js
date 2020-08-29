@@ -1,4 +1,4 @@
-export const deleteRequest = (api, body) => {
+export default function deleteRequest (api, body) {
   fetch(`${api}`, {
     method: "DELETE",
     headers: {'Content-Type': 'application/json'},

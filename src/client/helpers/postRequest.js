@@ -1,4 +1,4 @@
-export const postRequest = (api, body) => {
+export default function postRequest (api, body) {
   fetch(`${api}`, {
     method: "POST",
     headers: {'Content-Type': 'application/json'},
