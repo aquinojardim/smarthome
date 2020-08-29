@@ -2,6 +2,7 @@ const express = require('express');
 const path = require('path');
 const app = express();
 const PORT = 3000;
+const apiRoute = require('./routes/apiRoute');
 const lightRoute = require('./routes/lightRoute');
 const temperatureRoute = require('./routes/temperatureRoute');
 
@@ -10,6 +11,7 @@ const temperatureRoute = require('./routes/temperatureRoute');
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
+app.use('/api', apiRoute);
 app.use('/light', lightRoute);
 app.use('/temperature', temperatureRoute);
 

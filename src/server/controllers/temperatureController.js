@@ -11,12 +11,16 @@ temperatureController.getInfo = (req, res, next) => {
       message: { err: 'Error occurred in temperatureController.getInfo. Check server logs for more details.' },
     });
   }
-  res.locals.data = results;
+
+  // solution to be able to be reused by the apiRouter 
+  res.locals.data.air = results.air;
+  res.locals.data.temperature = results.temperature;
+  
   return next();
 }
 
 // retrive item from the request body and save it to the database, them respond with the new database 
-temperatureController.updateInfo = (req, res, next) => {
+temperatureController.postInfo = (req, res, next) => {
   const obj = req.body.obj;
 
   // scrub object before store on database
