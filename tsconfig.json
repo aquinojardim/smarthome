@@ -1,0 +1,18 @@
+{
+  "compilerOptions": {
+    "outDir": "./build/",
+    "sourceMap": true,
+    "noImplicitAny": false,
+    "module": "es6",
+    "target": "es5",
+    "jsx": "react",
+    "allowJs": true,
+    "typeRoots": [
+      "./node_modules/@types"
+    ],
+    // "types": ["jest", "node"],
+    "types": ["node"],
+  },
+  "include": ["src/**/*"],
+  "exclude": ["__tests__", "node_modules"]
+}
