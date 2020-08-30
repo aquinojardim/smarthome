@@ -1,24 +1,12 @@
 /* eslint-disable react/prop-types */
 import React from "react";
-import { makeStyles } from "@material-ui/core/styles";
+import { stylesBottomBar } from "../styles/stylesBottomBar";
 import { BottomNavigation, BottomNavigationAction } from "@material-ui/core";
 import SpeedIcon from "@material-ui/icons/Speed";
 import EmojiObjectsIcon from "@material-ui/icons/EmojiObjects";
 
-const useStyles = makeStyles({
-  root: {
-    width: "100%",
-    position: "fixed",
-    bottom: 0,
-    background: "black",
-  },
-  button: {
-    width: "100%",
-  },
-});
-
 export default function BottomBar({ view, setView }) {
-  const classes = useStyles();
+  const classes = stylesBottomBar();
 
   return (
     <BottomNavigation

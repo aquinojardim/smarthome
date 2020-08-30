@@ -1,49 +1,22 @@
 import React from "react";
 import * as actions from "../../../reducer/actions/actions";
 import { useDispatch } from "react-redux";
-import { makeStyles } from "@material-ui/core/styles";
 import { Typography, Slider } from "@material-ui/core";
+import { stylesChangeTemperature } from "../temperatureStyles/stylesChangeTemperature";
+import { generateMarks , valueText } from "../temperatureHelpers/helpersChangeTemperature";
 
-const useStyles = makeStyles((theme) => ({
-  root: {
-    marginLeft: "auto",
-    marginRight: "auto",
-    [theme.breakpoints.down("sm")]: {
-      width: "70%",
-    },
-    [theme.breakpoints.up("md")]: {
-      width: "30%",
-    },
-  },
-}));
-
-const generateMarks = () => {
-  const result = [];
-  for (let i = 0; i < 100; i += 10) {
-    result.push({
-      value: i,
-      label: `${i}°`,
-    });
-  }
-  return result;
-};
-
-const marks = generateMarks();
-
-const valuetext = (value) => {
-  return `${value}°`;
-};
 
 export default function ChangeTemperature() {
-  const classes = useStyles();
+  const classes = stylesChangeTemperature();
   const dispatch = useDispatch();
+  const marks = generateMarks();
 
   return (
     <div className={classes.root}>
       <Slider
         color="secondary"
         defaultValue={0}
-        getAriaValueText={valuetext}
+        getAriaValueText={valueText}
         aria-labelledby="discrete-slider-custom"
         step={1}
         valueLabelDisplay="auto"

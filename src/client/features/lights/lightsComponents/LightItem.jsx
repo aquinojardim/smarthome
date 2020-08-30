@@ -2,19 +2,12 @@
 import React from "react";
 import * as actions from "../../../reducer/actions/actions";
 import { useDispatch } from "react-redux";
-import { makeStyles } from "@material-ui/core/styles";
+import { stylesLightItem } from "../lightsStyles/stylesLightItem";
 import { FormControlLabel, ListItem, ListItemSecondaryAction, ListItemText, Switch, IconButton } from "@material-ui/core";
 import DeleteIcon from "@material-ui/icons/Delete";
 
-const useStyles = makeStyles(() => ({
-  name: {
-    position: "absolute",
-    left: "40%",
-  },
-}));
-
 export default function LightItem({ id, name, status }) {
-  const classes = useStyles();
+  const classes = stylesLightItem();
   const dispatch = useDispatch();
 
   const handleChange = (event) => {

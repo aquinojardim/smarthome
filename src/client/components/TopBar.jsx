@@ -1,23 +1,11 @@
 import React from "react";
-import { makeStyles } from "@material-ui/core/styles";
+import { stylesTopBar } from "../styles/stylesTopBar";
 import { Toolbar, Typography, IconButton, MenuItem, Menu } from "@material-ui/core";
 import MenuIcon from "@material-ui/icons/Menu";
 import AccountCircle from "@material-ui/icons/AccountCircle";
 
-const useStyles = makeStyles((theme) => ({
-  root: {
-    flexGrow: 1,
-  },
-  menuButton: {
-    marginRight: theme.spacing(2),
-  },
-  title: {
-    flexGrow: 1,
-  },
-}));
-
 export default function TopBar() {
-  const classes = useStyles();
+  const classes = stylesTopBar();
   const [anchorEl, setAnchorEl] = React.useState(null);
   const open = Boolean(anchorEl);
   const today = new Date().toDateString();

@@ -1,86 +1,11 @@
 /* eslint-disable react/prop-types */
 import React from "react";
 import { useSelector } from "react-redux";
+import { stylesThermostat } from "../temperatureStyles/stylesThermostat";
+import { pointsToPath, rotatePoint, rotatePoints, restrictToRange, mapEcoPoint} from "../temperatureHelpers/helpersThermostat";
 
 export default function Thermostat(props) {
   const { temperature, targetTemperature, eco } = useSelector((state) => state);
-
-  const getStyles = () => {
-    let dialColor = "#222";
-
-    return {
-      dial: {
-        WebkitUserSelect: "none",
-        MozUserSelect: "none",
-        msUserSelect: "none",
-        userSelect: "none",
-      },
-      circle: {
-        fill: dialColor,
-        WebkitTransition: "fill 0.5s",
-        transition: "fill 0.5s",
-      },
-      target: {
-        fill: "white",
-        textAnchor: "middle",
-        fontFamily: "Helvetica, sans-serif",
-        alignmentBaseline: "central",
-        fontSize: "120px",
-        fontWeight: "bold",
-        visibility: "visible",
-      },
-      ambient: {
-        fill: "white",
-        textAnchor: "middle",
-        fontFamily: "Helvetica, sans-serif",
-        alignmentBaseline: "central",
-        fontSize: "22px",
-        fontWeight: "bold",
-      },
-      eco: {
-        fill: "#13EB13",
-        opacity: eco ? "1" : "0",
-        visibility: "visible",
-        WebkitTransition: "opacity 0.5s",
-        transition: "opacity 0.5s",
-        pointerEvents: "none",
-      },
-    };
-  };
-
-  const pointsToPath = (points) => {
-    return [
-      points
-        .map((point, iPoint) =>
-          [iPoint > 0 ? "L" : "M", point[0], " ", point[1]].join("")
-        )
-        .join(" "),
-      "Z",
-    ].join("");
-  };
-
-  const rotatePoint = (point, angle, origin) => {
-    const radians = (angle * Math.PI) / 180;
-    const x = point[0] - origin[0];
-    const y = point[1] - origin[1];
-    const x1 = x * Math.cos(radians) - y * Math.sin(radians) + origin[0];
-    const y1 = x * Math.sin(radians) + y * Math.cos(radians) + origin[1];
-    return [x1, y1];
-  };
-
-  const rotatePoints = (points, angle, origin) => {
-    return points.map((point) => rotatePoint(point, angle, origin));
-  };
-
-  const restrictToRange = (val, min, max) => {
-    if (val < min) return min;
-    if (val > max) return max;
-    return val;
-  };
-
-  const mapEcoPoint = (point, scale) => {
-    return isNaN(point) ? point : point * scale;
-  };
 
   // Local variables used for rendering.
   const diameter = 400;
@@ -149,65 +74,10 @@ export default function Thermostat(props) {
 
   // Determines the positioning of the eco, should it be displayed.
   const ecoScale = radius / 5 / 100;
-  const ecoDef = [
-    "M",
-    3,
-    84,
-    "c",
-    24,
-    17,
-    51,
-    18,
-    73,
-    -6,
-    "C",
-    100,
-    52,
-    100,
-    22,
-    100,
-    4,
-    "c",
-    -13,
-    15,
-    -37,
-    9,
-    -70,
-    19,
-    "C",
-    4,
-    32,
-    0,
-    63,
-    0,
-    76,
-    "c",
-    6,
-    -7,
-    18,
-    -17,
-    33,
-    -23,
-    24,
-    -9,
-    34,
-    -9,
-    48,
-    -20,
-    -9,
-    10,
-    -20,
-    16,
-    -43,
-    24,
-    "C",
-    22,
-    63,
-    8,
-    78,
-    3,
-    84,
-    "z",
+  const ecoDef = [ "M", 3, 84, "c", 24, 17, 51, 18, 73, -6, "C", 100,
+    52, 100, 22, 100, 4, "c", -13, 15, -37, 9, -70, 19, "C", 4, 32, 0,
+    63, 0, 76, "c", 6, -7, 18, -17, 33, -23, 24, -9, 34, -9, 48, -20, -9,
+    10, -20, 16, -43, 24, "C", 22, 63, 8, 78, 3, 84, "z",
   ]
     .map((point) => mapEcoPoint(point, ecoScale))
     .join(" ");
@@ -237,7 +107,7 @@ export default function Thermostat(props) {
   ]);
 
   // The styles change based on state.
-  const styles = getStyles();
+  const styles = stylesThermostat(eco);
 
   // Piece it all together to form the thermostat display.
   return (
