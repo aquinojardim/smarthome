@@ -15,12 +15,6 @@ import ChangeTemperature from './temperatureComponents/ChangeTemperature';
 const useStyles = makeStyles((theme) => ({
   // drawer stays at fixed width, no matter the size of the screen
   drawer: {
-    [theme.breakpoints.down('sm')]: {
-      width: '80%',
-    },
-    [theme.breakpoints.up('md')]: {
-      width: '90%',
-    },
     flexShrink: 0,
   },
   title: {
@@ -30,10 +24,16 @@ const useStyles = makeStyles((theme) => ({
   // width of background of drawer
   drawerPaper: {
     backgroundColor: '#333',
-    [theme.breakpoints.down('sm')]: {
+    [theme.breakpoints.up('xs')]: {
+      width: '80%',
+      height: '70%',
+      margin: '10%',
+      marginTop: '20%',
+    },
+    [theme.breakpoints.up('sm')]: {
       width: '80%',
       height: '80%',
-      margin: '10%'
+      margin: '10%',
     },
     [theme.breakpoints.up('md')]: {
       width: '90%',

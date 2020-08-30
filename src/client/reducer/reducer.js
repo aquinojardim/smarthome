@@ -1,5 +1,4 @@
 import * as types from './constants/actionTypes';
-import getRequest from '../helpers/getRequest';
 import postRequest from '../helpers/postRequest';
 import deleteRequest from '../helpers/deleteRequest';
 
@@ -24,28 +23,13 @@ const reducer = (state = initialState, action) => {
   switch (action.type) {
     // Update state with payload
     case types.GET_STATE:
-      // fix not connecting to backend
-      // const data = getRequest("/api/");
-      // mock data to test frontend
-      const data = {
-        "lights": {
-          "1": {
-            "name": "Living Room",
-            "status": true
-          }
-        },
-        "eco": true,
-        "temperature": 60 
-      }
-
-      lightCountCopy = Object.keys(data.lights).length
-      lightsCopy = data.lights;
-      temperatureCopy = data.temperature;
-      targetTemperatureCopy = data.temperature;
-      ecoCopy = data.eco;
+        temperatureCopy = action.payload.temperature;
+        targetTemperatureCopy = action.payload.temperature;
+        ecoCopy = action.payload.eco;
+        lightCountCopy = Object.keys(action.payload.lights).length
+        lightsCopy = action.payload.lights;
 
       return {
-        ...state,
         lightCount: lightCountCopy,
         lights: lightsCopy,
         targetTemperature: targetTemperatureCopy,
@@ -59,33 +43,19 @@ const reducer = (state = initialState, action) => {
         lightsCopy[light]['status'] = action.payload
       }
 
-      // const lightPosted = postRequest("/light/all", lightCopy);
+      postRequest("/api", {obj: lightsCopy});
   
       return {
         ...state,
         lights: lightsCopy,
       };
-
-    case types.DELETE_LIGHT:
-      // const lightDelete = { id: action.payload}
-      // const lightDeleted = deleteRequest("/light/", lightDelete);
-  
-      delete lightsCopy[action.payload]
-      lightCountCopy = Object.keys(lightsCopy).length
-    
-      return {
-        ...state,
-        lightCount: lightCountCopy,
-        lights: lightsCopy,
-      };
-
     case types.UPDATE_LIGHT:
       const lightData = {obj: {
                       id: action.payload.id,
                       value: action.payload.value
                     }}
+      postRequest("/light", lightData);
 
-      // const lightPosted = postRequest("/light/", lightData);
       lightsCopy[action.payload.id] = action.payload.value
       lightCountCopy = Object.keys(lightsCopy).length
   
@@ -97,10 +67,11 @@ const reducer = (state = initialState, action) => {
 
     case types.DELETE_LIGHT:
       const lightDelete = { id: action.payload}
-      // const lightDeleted = deleteRequest("/light/", lightDelete);
+      deleteRequest("/light", lightDelete);
   
       delete lightsCopy[action.payload]
       lightCountCopy = Object.keys(lightsCopy).length
+      console.log('lightCountCopy')
     
       return {
         ...state,
@@ -118,11 +89,11 @@ const reducer = (state = initialState, action) => {
 
     case types.UPDATE_TEMPERATURE:
       // not connect to backend
-      // const temperatureData = {obj: {
-      //                           eco: action.payload.eco,
-      //                           temperature: action.payload.temperature
-      //                         }}
-      // const temperaturePosted = postRequest("/temperature/", temperatureData);
+      const temperatureData = {obj: {
+                                eco: action.payload.eco,
+                                temperature: action.payload.temperature
+                              }}
+      postRequest("/temperature", temperatureData);
        
       ecoCopy = action.payload.eco
       if(action.payload.temperature){

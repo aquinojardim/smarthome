@@ -46,6 +46,7 @@ export default function LightItem ({id, name, status}) {
         <ListItemSecondaryAction>
           <IconButton 
             onClick={(e) => {
+              console.log(id)
               dispatch(actions.deleteLight(id))
             }}
             edge="end" 

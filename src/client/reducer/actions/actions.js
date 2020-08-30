@@ -1,7 +1,8 @@
 import * as types from '../constants/actionTypes';
 
-export const getState = () => ({
+export const getState = (obj) => ({
     type: types.GET_STATE,
+    payload: obj,
 })
 
 export const allLights = (boolen) => ({

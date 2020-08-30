@@ -7,8 +7,6 @@ import {
   Drawer, 
   List, 
   Divider, 
-  Grid, 
-  TextField 
 } from '@material-ui/core';
 import PowerSettingsNewIcon from '@material-ui/icons/PowerSettingsNew';
 import PowerOffIcon from '@material-ui/icons/PowerOff';
@@ -41,14 +39,20 @@ const useStyles = makeStyles((theme) => ({
   // width of background of drawer
   drawerPaper: {
     backgroundColor: '#333',
-    [theme.breakpoints.down('sm')]: {
+    [theme.breakpoints.up('xs')]: {
+      width: '80%',
+      height: '70%',
+      margin: '10%',
+      marginTop: '20%',
+    },
+    [theme.breakpoints.up('sm')]: {
       width: '80%',
       height: '80%',
-      margin: '10%'
+      margin: '10%',
     },
     [theme.breakpoints.up('md')]: {
       width: '90%',
-      height: '90%',
+      height: '80%',
       margin: '5%'
     },
   },

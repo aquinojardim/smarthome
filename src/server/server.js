@@ -16,9 +16,7 @@ app.use('/light', lightRoute);
 app.use('/temperature', temperatureRoute);
 
 // Send main app
-app.use('/', express.static(path.resolve(__dirname, '../client/assets')));
-
-app.get('/', (req, res) => res.status(200).sendFile(path.resolve(__dirname, '../client/index.html')));
+app.use('/', express.static(path.resolve(__dirname, '../../build')));
 
 // Catch-all route handler
 app.use('*', (req, res) => {

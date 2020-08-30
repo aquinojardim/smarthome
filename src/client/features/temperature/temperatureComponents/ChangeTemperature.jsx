@@ -1,6 +1,6 @@
 import React from 'react';
 import * as actions from '../../../reducer/actions/actions';
-import { useSelector, useDispatch } from 'react-redux';
+import { useDispatch } from 'react-redux';
 import { makeStyles } from '@material-ui/core/styles';
 import Typography from '@material-ui/core/Typography';
 import Slider from '@material-ui/core/Slider';
@@ -40,13 +40,12 @@ const valuetext = (value) => {
 export default function ChangeTemperature(props) {
   const classes = useStyles();
   const dispatch = useDispatch();
-  const { temperature, targetTemperature } = useSelector((state) => state);
 
   return (
     <div className={classes.root}>
       <Slider
         color="secondary"
-        defaultValue={temperature}
+        defaultValue={0}
         getAriaValueText={valuetext}
         aria-labelledby="discrete-slider-custom"
         step={1}

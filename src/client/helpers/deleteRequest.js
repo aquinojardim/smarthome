@@ -1,4 +1,5 @@
 export default function deleteRequest (api, body) {
+  console.log('in delete request')
   fetch(`${api}`, {
     method: "DELETE",
     headers: {'Content-Type': 'application/json'},
