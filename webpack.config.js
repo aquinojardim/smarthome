@@ -1,58 +1,55 @@
-const path = require('path');
-const HtmlWebpackPlugin = require('html-webpack-plugin');
+const path = require("path");
+const HtmlWebpackPlugin = require("html-webpack-plugin");
 
 module.exports = {
-  entry: path.resolve(__dirname, './src/client/index.js'),
+  entry: path.resolve(__dirname, "./src/client/index.js"),
   output: {
-    path: path.resolve(__dirname, './build'),
-    filename: 'bundle.js'
+    path: path.resolve(__dirname, "./build"),
+    filename: "bundle.js",
   },
   mode: process.env.NODE_ENV,
   devServer: {
-    contentBase: path.join(__dirname, 'src/client'),
+    contentBase: path.join(__dirname, "src/client"),
     historyApiFallback: true,
     proxy: {
-      '/api': {
-        target: 'http://localhost:3000/',
+      "/api": {
+        target: "http://localhost:3000/",
         secure: false,
       },
-      '/temperature': {
-        target: 'http://localhost:3000/',
+      "/temperature": {
+        target: "http://localhost:3000/",
         secure: false,
       },
-      '/light': {
-        target: 'http://localhost:3000/',
+      "/light": {
+        target: "http://localhost:3000/",
         secure: false,
       },
-      hot: true
-    }
+      hot: true,
+    },
   },
   module: {
     rules: [
       {
         test: /\.css$/,
-        use: [
-          'style-loader',
-          'css-loader'
-        ]
-      }, 
+        use: ["style-loader", "css-loader"],
+      },
       {
         test: /\.(js|jsx)$/,
         use: {
-          loader: 'babel-loader',
+          loader: "babel-loader",
           options: {
-            presets: ['@babel/preset-env', '@babel/preset-react']
-          }
-        }
-      }
-    ]
+            presets: ["@babel/preset-env", "@babel/preset-react"],
+          },
+        },
+      },
+    ],
   },
   plugins: [
     new HtmlWebpackPlugin({
-      template: './src/client/index.html'
-    })
+      template: "./src/client/index.html",
+    }),
   ],
   resolve: {
-    extensions: ['.js', '.jsx']
-  }
-}
+    extensions: [".js", ".jsx"],
+  },
+};

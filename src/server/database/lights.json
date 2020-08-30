@@ -1,1 +1,5 @@
-{"1":{"name":"Living Room","status":true},"2":{"name":"Kitchen","status":false},"3":{"name":"Bedroom","status":true}}
+{
+  "1": { "name": "Living Room", "status": true },
+  "2": { "name": "Kitchen", "status": false },
+  "3": { "name": "Bedroom", "status": true }
+}

@@ -1,35 +1,36 @@
-const express = require('express');
-const path = require('path');
+/* eslint-disable no-unused-vars */
+/* eslint-disable no-undef */
+const express = require("express");
+const path = require("path");
 const app = express();
 const PORT = 3000;
-const apiRoute = require('./routes/apiRoute');
-const lightRoute = require('./routes/lightRoute');
-const temperatureRoute = require('./routes/temperatureRoute');
-
+const apiRoute = require("./routes/apiRoute");
+const lightRoute = require("./routes/lightRoute");
+const temperatureRoute = require("./routes/temperatureRoute");
 
 // Parse request body
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
-app.use('/api', apiRoute);
-app.use('/light', lightRoute);
-app.use('/temperature', temperatureRoute);
+app.use("/api", apiRoute);
+app.use("/light", lightRoute);
+app.use("/temperature", temperatureRoute);
 
 // Send main app
-app.use('/', express.static(path.resolve(__dirname, '../../build')));
+app.use("/", express.static(path.resolve(__dirname, "../../build")));
 
 // Catch-all route handler
-app.use('*', (req, res) => {
+app.use("*", (req, res) => {
   return res.sendStatus(404);
 });
 
 // Global error handler
 app.use((err, req, res, next) => {
-  console.log('invoking global error handler');
+  console.log("invoking global error handler");
   const defaultErr = {
-    log: 'Express error handler caught unknown middleware',
+    log: "Express error handler caught unknown middleware",
     status: 400,
-    message: { err: 'An error occurred' },
+    message: { err: "An error occurred" },
   };
 
   const errorObj = Object.assign({}, defaultErr, err);
