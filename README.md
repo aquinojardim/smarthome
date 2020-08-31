@@ -5,10 +5,10 @@
 
 ## Description
 Application for home automation that turns lights on and off and controls temperature. This application was desing in a mobile first and adapt to multiple screens on the market.
-![demo](./src/client/assets/smartHomeIPad.png)
-![demo](./src/client/assets/smartHomeIPhoneX.png)
-![demo](./src/client/assets/smartHomeIPhone5.png)
-![demo](./src/client/assets/smartHomeGalaxy.png)
+![IPad](./src/client/assets/smartHomeIPad.png)
+![IPhoneX](./src/client/assets/smartHomeIPhoneX.png)
+![IPhone5](./src/client/assets/smartHomeIPhone5.png)
+![Galaxy](./src/client/assets/smartHomeIGalaxy.png)
 
 
 
