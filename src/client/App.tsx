@@ -1,10 +1,10 @@
 import React, { useState } from 'react';
 import { Container } from '@material-ui/core';
 import { useDispatch } from 'react-redux';
-import stylesHome from './styles/stylesHome';
+import stylesHome from './commonStyles/stylesHome';
 import * as actions from './reducer/actions/actions';
-import TopBar from './components/TopBar';
-import BottomBar from './components/BottomBar';
+import TopBar from './features/navigation/TopBar';
+import BottomBar from './features/navigation/BottomBar';
 import TemperaturePanel from './features/temperature/TemperaturePanel';
 import LightPanel from './features/lights/LightPanel';
 

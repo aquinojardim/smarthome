@@ -6,7 +6,7 @@ import {
 } from '@material-ui/core';
 import PowerSettingsNewIcon from '@material-ui/icons/PowerSettingsNew';
 import PowerOffIcon from '@material-ui/icons/PowerOff';
-import stylesPanel from '../../styles/stylesPanel';
+import stylesPanel from '../../commonStyles/stylesPanel';
 import { InitialState } from '../../reducer/reducerTypes/typesReducer';
 import * as actions from '../../reducer/actions/actions';
 import LightItem from './lightsComponents/LightItem';

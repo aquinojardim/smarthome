@@ -4,7 +4,7 @@ import { green } from '@material-ui/core/colors';
 import { Drawer, FormControlLabel, Switch } from '@material-ui/core';
 import * as actions from '../../reducer/actions/actions';
 import { InitialState } from '../../reducer/reducerTypes/typesReducer';
-import stylesPanel from '../../styles/stylesPanel';
+import stylesPanel from '../../commonStyles/stylesPanel';
 import Thermostat from './temperatureComponents/Thermostat';
 import ChangeTemperature from './temperatureComponents/ChangeTemperature';
 

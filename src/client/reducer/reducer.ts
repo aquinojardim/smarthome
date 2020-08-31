@@ -2,8 +2,8 @@
 import * as types from './constants/actionTypes';
 import { actionTypes } from './reducerTypes/typesActionTypes';
 import { InitialState } from './reducerTypes/typesReducer';
-import postRequest from '../helpers/postRequest';
-import deleteRequest from '../helpers/deleteRequest';
+import postRequest from './reducerHelpers/postRequest';
+import deleteRequest from './reducerHelpers/deleteRequest';
 
 // Set initial state
 export const initialState:InitialState = {

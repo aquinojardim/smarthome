@@ -3,7 +3,7 @@ import React from 'react';
 import { BottomNavigation, BottomNavigationAction } from '@material-ui/core';
 import SpeedIcon from '@material-ui/icons/Speed';
 import EmojiObjectsIcon from '@material-ui/icons/EmojiObjects';
-import stylesBottomBar from '../styles/stylesBottomBar';
+import stylesBottomBar from './navigationStyles/stylesBottomBar';
 
 export interface typesBottomBar {
   view:number;

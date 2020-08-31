@@ -4,7 +4,7 @@ import {
 } from '@material-ui/core';
 import MenuIcon from '@material-ui/icons/Menu';
 import AccountCircleIcon from '@material-ui/icons/AccountCircle';
-import stylesTopBar from '../styles/stylesTopBar';
+import stylesTopBar from './navigationStyles/stylesTopBar';
 
 export default function TopBar(): JSX.Element {
   const classes = stylesTopBar();
