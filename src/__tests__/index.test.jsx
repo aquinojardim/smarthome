@@ -6,6 +6,7 @@ import React from 'react';
 import { createMount } from '@material-ui/core/test-utils';
 import { ThemeProvider } from '@material-ui/core/styles';
 
+// testting theame provider
 describe('<MyComponent />', () => {
   let mount;
 
