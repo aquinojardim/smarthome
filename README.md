@@ -60,8 +60,8 @@ Node and express was chosen to keep “language consistency" between front and b
 
 
 
-## Frontend Architecture Diagram
-SOON 
+## Diagrams
+![Diagram](./src/client/assets/ArchitectureDiagram.png)
 
 
 
