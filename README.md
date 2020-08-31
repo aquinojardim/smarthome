@@ -2,17 +2,17 @@
 <h6 align="center">Author: Gabriela Aquino</h6>
 
 <p align="center">
-  <img src ="./src/client/assets/smartHomeDemo.gif" width="300"/>
+  <img src ="./src/client/assets/smartHomeDemo.gif" width="600"/>
 </p>
 
 ## Description
 Application for home automation that turns lights on and off and controls temperature. This application was designed in a mobile first and adapted to multiple screens on the market.
 
 <p align="center">
-  <img src ="./src/client/assets/smartHomeIPad.png" width="100"/>
-  <img src ="./src/client/assets/smartHomeIPhoneX.png" width="50"/>
-  <img src ="./src/client/assets/smartHomeIPhone5.png" width="50"/>
-  <img src ="./src/client/assets/smartHomeIGalaxy.png" width="50"/>
+  <img src ="./src/client/assets/smartHomeIPad.png" width="300"/>
+  <img src ="./src/client/assets/smartHomeIPhoneX.png" width="100"/>
+  <img src ="./src/client/assets/smartHomeIPhone5.png" width="100"/>
+  <img src ="./src/client/assets/smartHomeIGalaxy.png" width="100"/>
 </p>
 
 
