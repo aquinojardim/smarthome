@@ -1,4 +1,7 @@
 declare module 'react';
+declare module 'enzyme';
+declare module 'enzyme-adapter-react-16';
+declare module 'react-test-renderer';
 declare module 'react-dom';
 declare module 'redux';
 declare module 'redux-devtools-extension';

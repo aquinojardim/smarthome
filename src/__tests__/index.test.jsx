@@ -28,5 +28,10 @@ describe('<MyComponent />', () => {
 
   it('should work', () => {
     const wrapper = mount(<MockedTheme><MySuccessButton /></MockedTheme>);
+    expect(wrapper).toBeTruthy();
+  });
+
+  it('Should exist', () => {
+    expect(ThemeProvider).toBeTruthy();
   });
 });
