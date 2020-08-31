@@ -12,12 +12,13 @@ export default function LightForm(): JSX.Element {
     input: '',
   });
 
-  const handleChange = (e:{target:{name:string, value:unknown}}) => {
+  const handleChange = (e:{target:{name:string, value:string}}) => {
     const targetName = e.target.name;
     const { value } = e.target;
+    const clean = value.replace(/[^A-Za-z0-9]/g, '');
     setFields({
       ...fields,
-      [targetName]: value,
+      [targetName]: clean,
     });
   };
 
