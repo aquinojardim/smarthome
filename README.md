@@ -1,14 +1,19 @@
 <h1 align="center">Smart Home</h1>
 <h6 align="center">Author: Gabriela Aquino</h6>
 
-![demo](./src/client/assets/smartHomeDemo.gif)
+<p align="center">
+  <img src ="./src/client/assets/smartHomeDemo.gif" width="300"/>
+</p>
 
 ## Description
 Application for home automation that turns lights on and off and controls temperature. This application was designed in a mobile first and adapted to multiple screens on the market.
-![IPad](./src/client/assets/smartHomeIPad.png)
-![IPhoneX](./src/client/assets/smartHomeIPhoneX.png)
-![IPhone5](./src/client/assets/smartHomeIPhone5.png)
-![Galaxy](./src/client/assets/smartHomeIGalaxy.png)
+
+<p align="center">
+  <img src ="./src/client/assets/smartHomeIPad.png" width="100"/>
+  <img src ="./src/client/assets/smartHomeIPhoneX.png" width="50"/>
+  <img src ="./src/client/assets/smartHomeIPhone5.png" width="50"/>
+  <img src ="./src/client/assets/smartHomeIGalaxy.png" width="50"/>
+</p>
 
 
 
